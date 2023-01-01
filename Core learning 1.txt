@@ -1,0 +1,82 @@
+/* Creating a table CUSTOMER with a Primary key in SQL */
+CREATE table CUSTOMER (
+  Customer_ID int(10) NOT NULL,
+  Customer_Name varchar(25),
+  Age int(10),
+  Address varchar(30),
+  Postcode varchar(20),
+  Email varchar(50),
+  City varchar(25),
+  Country varchar(30),
+  primary key(Customer_ID)
+  );
+
+/*Creating a table ORDERING with a Foreign key in SQL */
+CREATE table ORDERING (
+  Order_ID int(10) NOT NULL,
+  Item varchar(50),
+  Price int,
+  Customer_ID int(10),
+  Order_Date date,
+  Dispatch_Date date,
+  Due_Date date,
+  primary key (Order_ID),
+  foreign key(Customer_ID) references CUSTOMER(Customer_ID)
+  );
+
+  
+/* insert data into CUSTOMER table in SQL */
+INSERT into CUSTOMER
+values (1, 'John Smith', 25, 'Norwood Avenue', 'RM10 1RT','johns56@gmail.com', 'London', 'United Kingdom'), 
+(2, 'Micheal', 40, 'Beech Avenue', 'E13 09H','micheal886@gmail.com', 'Birmingham', 'United Kingdom'),
+(3, 'Akash', 32, 'Kings Lane', '500097','akashgupta@gmail.com','Hyderabad', 'India'),
+(4, 'Christina', 28, 'Barking Road', 'E12 7PJ','chrsitina34@yahoo.co.uk', 'Manchester', 'United Kingdom'),
+(5, 'Krishna', 42, 'Rose Avenue', '600950','krish80@gmail.com', 'Bangalore', 'India'),
+(6, 'Samaira', 30, 'Bond Street', '10076', 'sam4u92@gmail.com','New York', 'USA'),
+(7, 'Thomas Cook',36, 'North Street', 'CM12 9GF','thomascook86@gmail.com', 'Cambridge', 'United Kingdom'),
+(8, 'Susan Keele', 24, 'South Street', 'BA1 7KU', 'susank98@gmail.com','Bath', 'United Kingdom'),
+(9, 'Natasha', 48, 'East Road', 'OX1 8PH','natasha_4u@gmail.com', 'Oxford', 'United Kingdom'),
+(10, 'William',56, 'Western Road', 'LE3 8LF', 'williamt_45@gmail.com','Leeds', 'United Kingdom');
+
+/* insert data into ORDERING table */
+INSERT into ORDERING values
+('101','Sofa','4000','5','10/12/2022','14/12/2022','20/12/2022'),
+  ('102','Dish Washer','1200','6','10/09/2022','14/09/2022','19/09/2022'),
+  ('103','Cooker','1450','1','18/03/2022','24/03/2022','28/03/2022'),
+  ('104','Washing Machine','875','7','01/04/2022','10/04/2022','15/04/2022'),
+  ('105','Double BedFrame','1250','6','15/05/2022','17/05/2022','22/05/2022'),
+  ('106','Dining Table','3600','3','09/09/2022','14/09/2022','20/09/2022'),
+  ('107','Coffee Table','400','5','12/08/2021','14/08/2021','20/08/2021'),
+  ('108','TV','2200','2','10/06/2022','24/06/2022','29/06/2022'),
+  ('109','Mattress','750','8','07/11/2022','15/11/2022','23/11/2022'),
+  ('110','Curtains','120','4','08/10/2022','11/10/2022','22/10/2022');
+
+
+
+/* Selecting the whole CUSTOMER table */
+  select * from CUSTOMER;
+
+/* selecting the data where the customer belongs to a particular city London */
+  select * from CUSTOMER where city ='London';
+
+/* selecting the Customer names whose age is more than 40  */
+  select Customer_Name from CUSTOMER where age > 40;
+
+
+  /* Selecting the whole ORDERING table */
+  select * from ORDERING;
+
+/*select the data from ORDERING  table where Customer_ID =5 */
+select * from ORDERING where Customer_ID = 5;
+
+/* Update a record in CUSTOMER table  */
+UPDATE CUSTOMER set city = 'Bristol' where Customer_ID = 2;
+
+/* Update a record in ORDERING table by changing the Price of an  Item  */
+UPDATE ORDERING set Price = '1250' where Item = 'Cooker';
+
+/* Delete a record from the table CUSTOMER whose Age > 50 */
+DELETE from CUSTOMER where Age > 50;
+
+/* Delete a record from the table ORDERING with Customer_ID = 8 */
+DELETE from ORDERING where Customer_ID = 8;

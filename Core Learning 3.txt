@@ -1,0 +1,34 @@
+
+
+/* Data fetching and calculations*/
+
+/* 1 - Counting the number of students enrolled overall */
+select COUNT(StudentID) AS NUMBEROFSTUDENTS_ENROLLED from Student;
+
+
+/* 2 - Calculate the Sum of full-time fees for every full-time course */
+select SUM(FullTimeFee) AS TOTAL_FULLTIME_FEE from Fees;
+
+/* 3 - Identify the cost of least and most expensive course */
+select MIN(FullTimeFee) AS LEASTEXPENSIVE_FULLTIME_FEE, MAX(FullTimeFee) AS MOSTEXPENSIVE_FULLTIME_FEE, MIN(PartTimeFee) AS LEASTEXPENSIVE_PARTTIME_FEE, MAX(PartTimeFee) AS MOSTEXPENSIVE_PARTTIME_FEE from Fees;
+
+
+/* 4 - Calculate the average cost of all part-time courses */
+select AVG(ParttimeFee) AS AVERAGE_PARTTIME_FEE from Fees;
+
+
+/* 5 - Calculate the fee of each full-time course after applying the scholarship discount */
+select (FullTimeFee - ScholarshipDiscount) AS FULLTIMEFEE_AFTERSCHOLARSHIPDISCOUNT from Fees;
+
+/* Extension */
+/* 1 - Selecting only the Course number of the
+cheapest full-time course */
+select CourseID from Fees where FullTimeFee = (Select MIN(FullTimeFee) from Fees); 
+
+/* 2 - Finding the cost of most expensive course after applying the Scholarship discount */
+select MAX(FullTimeFee-ScholarshipDiscount) AS MOSTEXPENSIVE_FULLTIMEFEE , MAX(PartTimeFee-ScholarshipDiscount) AS MOSTEXPENSIVE_PARTTIMEFEE from Fees; 
+
+/* 3 - Counting the number of applications for History courses made between 01/03/2020 and 30/08/2020 */
+select CourseID from Course where CourseName ='History';
+
+select COUNT(applicationID) AS NUMBER_OF_HISTORY_APPLICATIONS from Application  where CourseAppliedFor = 11 and DateOfApplication BETWEEN '2020-03-01' AND '2020-08-30';

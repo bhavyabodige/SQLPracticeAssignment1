@@ -1,0 +1,15 @@
+/* Data fetching and logical operators */
+
+/* 1 - Obtain all of the student information for successful applications made for course 11 which do not relate to current students */
+select * from Application where CourseAppliedFor = 11 and accepted = 1 and StudentID NOT IN ( select StudentID from Student where CourseId = 11);
+
+
+/* 2 - Modify the select statement from the previous example into an insert statement and insert the data into student table */
+INSERT INTO Student VALUES (0,11,'Thomas','Edison','1980-10-57','thomas.edison@gmail.com');
+
+
+/* 3 - Obtain all the information for the unsuccessful applications made for course 11 */
+select * from Application where CourseAppliedFor = 11 and accepted = 0;
+
+
+
